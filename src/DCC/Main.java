@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		 final String ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789$\1\2";
+		 final String ALPHABET = " abcdefghijklmnopqrstuvwxyz0123456789$\1\2";
 		
 		
 			StringBuffer s=new StringBuffer();
@@ -33,15 +33,17 @@ public class Main {
 						line= line.replaceAll("[^\\p{ASCII}]", "");
 						line=line.replaceAll("[^a-zA-Z\\s]", "").replaceAll("(\\r|\\n|\\t)", "");
 						line=line.toLowerCase();
-						line= line.replaceAll(" ", "");
+						//line= line.replaceAll(" ", "");
 						s.append(line);
 						
 					}
 					s.append("$");
-		
+					//
+					long start = System.currentTimeMillis();    	
 					//Testing build construction time.
 					Node tree = SuffixTree.buildSuffixTree(s.toString(), ALPHABET);
-					tree.printTree(s.toString());
+					long elapsedTime =  System.currentTimeMillis() - start;
+					System.out.println("Tiempo transcurrido con 2^".concat(Integer.toString(j)).concat(" caracteres en ").concat(Long.toString(elapsedTime).concat(" Milisegundos")));
 					
 					try {
 						BufferedWriter writer=new BufferedWriter(new FileWriter("test".concat(Integer.toString(j)).concat(".txt")));
