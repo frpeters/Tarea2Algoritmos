@@ -67,4 +67,33 @@ public class Node {
     		}
     	}
     }
+    
+    
+    public int search(String s, String search,int val){
+    	int init=val;
+        for (int i=0; i<children.length; i++){
+        	if(this.children[i]!=null){
+        	int i1=this.children[i].begin;
+        	int i2=this.children[i].end;
+        	int g=val;
+        
+         for(int j=i1;j<i2;j++){
+        	 if(search.length()==g){		 
+        		 return i1;
+        	 }
+        	 if(s.charAt(j)!=search.charAt(g)){ 
+        		
+        		 break;
+        	 }       	 
+        	 g++;
+
+        	 if(j+1==i2){
+        		 return this.children[i].search(s,search,g);
+        	 }
+         }
+        }
+        }
+        
+        return -1;
+      }
   }
